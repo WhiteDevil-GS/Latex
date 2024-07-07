@@ -1,0 +1,353 @@
+1. Develop a LaTeX script to create a simple document that consists of 2 sections [Section1, Section2], and a paragraph with dummy text in each section. And also include header [title of document] and footer [institute name, page number] in the document.
+\documentclass[12pt,a4paper]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\begin{document}
+% Set the page style to "fancy"...
+\pagestyle{fancy}
+\title{Project Title}
+\fancyhf{} % clear existing header/footer entries
+\fancyhead{} % clear all header fields
+\fancyhead[R]{Project Title}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LO,CE]{Bapuji Institute of Technology}
+\fancyfoot[R]{\thepage}
+\maketitle
+\section{Introduction}
+% ADD TEXT HERE (TWO PARAGRAPHS).
+\section{Literature Review}
+% ADD TEXT HERE (TWO PARAGRAPHS).
+\section{Outcome of Literature}
+% ADD TEXT HERE (TWO PARAGRAPHS).
+\begin{itemize}
+\item ADD TEXT HERE
+\item ADD TEXT HERE
+\item ADD TEXT HERE
+\item ADD TEXT HERE
+\end{itemize}
+\end{document}
+2. Develop a LaTeX script to create a document that displays the sample
+Abstract/Summary.
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\begin{document}
+\thispagestyle{plain}
+\begin{center}
+\Large
+\textbf{Thesis Title}
+\vspace{0.4cm}
+\textbf{Author Name}
+\vspace{0.9cm}
+\textbf{Abstract}
+\end{center}
+% ADD TEXT HERE (TWO PARAGRAPHS)
+\end{document}
+3. Develop a LaTeX script to create a simple title page of the VTU project Report [Use suitable Logos and text formatting].
+The title page has been composed using two tex files: FrontPage.tex contains the layout
+setting and Title.tex contains the content information. Both tex files needs to be created.
+To obtain output pdf file, execute FrontPage.tex
+FrontPage.tex
+% Memoir is more versatile than other document classes like article, report, book etc,
+\documentclass[11pt,a4paper,oneside]{memoir}
+% To handle image, like scaling
+\usepackage{graphicx}
+%\usepackage[english]{babel}
+% Used for modifying page layout
+\usepackage[a4paper,right=1in]{geometry}
+% For including source code
+\usepackage{listings}
+% Document starts here
+\begin{document}
+\include{Title} % Include Title Page, (i.e. title.tex)
+\setlength{\oddsidemargin}{0.25in} % Left side margin {1in by default + 0.25in}
+% Header specification
+\setlength{\headheight}{\onelineskip}
+\setlength{\headsep}{6pt}
+\setlength{\topmargin}{-0.25in}
+% Footer specification
+\setlength{\footskip}{\onelineskip}
+\setlength{\footnotesep}{\onelineskip}
+% A4 paper height = 11.69in
+% thus 11.69in - 9.67in - 1in (top + header) is approx 0.75in left for bottom
+\setlength{\textheight}{9.67in}
+\OnehalfSpacing % Line Spacing set to 1.5
+\pagestyle{plain}
+\end{document}
+Title.tex
+\begin{titlingpage}
+\thispagestyle{empty}
+\centering
+{\Large \textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY,}}\\
+\vspace*{0.1in}
+{\Large \textbf{JNANA SANGAMA, BELAGAVI - 590 018}}\\
+\begin{figure}[h]
+\centering
+\includegraphics[height=4cm]{graph1.jpg}
+\end{figure}
+\vfill
+\Large{\textbf{TITLE}}
+\vfill
+\begin{small}
+A project report submitted to \\Visvesvaraya Technological University. Belgaum, Karnataka \\
+\textit{in the partial fulfillment of the requirements for the award of degree of} \\
+\end{small}
+\begin{normalsize}
+\textbf{\textit{Bachelor of Engineering }} \\
+in \\
+\textbf{\textit{Computer Science and Engineering}} \\
+by \\
+\end{normalsize}
+\vfill
+\begin{tabular}{ccc}
+\textbf{Student-1 }& & \textbf{USN}\\
+\textbf{Student-2 }& & \textbf{USN}\\
+\textbf{Student-3 }& & \textbf{USN}\\
+\textbf{Student-4 }& & \textbf{USN}\\
+\end{tabular}
+\vfill
+{\normalsize under the guidance of}\\
+\Large{\textbf{Prof. ABC}}\\
+Assistant Professor\\
+\vfill
+\begin{figure}[h]
+\centering
+\includegraphics[height=3.7cm]{graph1.jpg}
+\end{figure}
+\textbf{Department of Computer Science \& Engineering}\\
+\textbf{Bapuji Institute of Engineering \& Technology}\\
+\begin{normalsize}
+Davanagere - 577 004, Karnataka, India.\\
+\end{normalsize}
+\textbf{June, 2024}
+\end{titlingpage}
+4. Develop a LaTeX script to create the Certificate Page of the Report [Use suitable commands to leave the blank spaces for user entry].
+The certificate page has been composed using two tex files: Certificate.tex contains the content information and MainCertificateExecute.tex contains the layout setting. Both tex files need to be created.
+To obtain output pdf file, execute MainCertificateExecute.tex
+Certificate.tex
+\thispagestyle{empty}
+\setlength{\toptafiddle}{1in}
+\setlength{\bottafiddle}{1in}
+\vspace*{-0.75in}
+\enlargethispage{\toptafiddle}
+\begin{center}
+\begin{Large}
+\textbf{Bapuji Institute of Engineering and Technology} \\
+\end{Large}
+\begin{Large}
+\textbf{Davanagere - 577004}\\
+\end{Large}
+\vspace{0.2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[height=3cm]{graph1.jpg}
+\end{figure}
+\begin{Large}
+\textbf{Department of Computer Science and Engineering} \\
+\end{Large}
+\Huge{\textbf{Certificate}}
+\end{center}
+\begin{large}
+This is to certify that the Project Report entitled
+\textbf{"TITLE"} is a bonafide work carried out by
+\textbf{Student-1(USN)}, \textbf{Student-2(USN)},
+\textbf{Student-3(USN)} and \textbf{Student-4(USN)}
+in the partial fulfillment of the requirement for the award of the degree of
+Bachelor of Engineering in Computer Science and Engineering, Visvesvaraya Technological
+University, Belagavi during the year 20XX-XX.
+It is certified that all corrections/suggestions indicated for the internal assessment
+have been incorporated in the report. The project report has been approved as it satisfies the
+academic requirements in respect of project
+work prescribed for the Bachelor of Engineering Degree.
+\end{large}
+\vfill
+\vfill
+\vfill
+\begin{table}[h!]
+\centering
+\begin{tabular}{cccccccccc}
+.................................&&&&&&&&& .................................\\
+\textbf{{\footnotesize Guide}} &&&&&&&&&\textbf{{\footnotesize Project
+Coordinator}}\\
+\textbf{Prof. XYZ}&&&&&&&&& \textbf{Dr. XYZ} \\
+\textbf{{\footnotesize Asst. Professor}} &&&&&&&&&
+\textbf{{\footnotesize Professor}}\\
+\textbf{{\footnotesize Dept of CSE, BIET}} &&&&&&&&&
+\textbf{{\footnotesize Dept of CSE, BIET}}\\
+\\
+\\
+.................................&&&&&&&&& .................................\\
+\textbf{Dr. XYZ} &&&&&&&&& \textbf{Dr. XYZ} \\
+\textbf{{\footnotesize Professor and Head}} &&&&&&&&&
+\textbf{{\footnotesize Principal}} \\
+\textbf{{\footnotesize Dept of CSE, BIET}} &&&&&&&&&
+\textbf{{\footnotesize BIET, Davanagere}}\\
+\end{tabular}
+\end{table}
+Name of the Examiners \hfill Signature with Date
+\begin{small}
+\begin{enumerate}
+\item Prof.
+\item Prof.
+\end{enumerate}
+\end{small}
+MainCertificateExecute.tex
+% Memoir is more versatile than other document classes like article, report, book etc,
+\documentclass[11pt,a4paper,oneside]{memoir}
+% To handle image, like scaling
+\usepackage{graphicx}
+% Used for modifying page layout
+\usepackage[a4paper,right=1in]{geometry}
+% For including source code
+\usepackage{listings}
+% To attach pdf files
+\usepackage{pdfpages}
+% Document starts here
+\begin{document}
+\newlength{\toptafiddle}
+\newlength{\bottafiddle}
+\definecolor{therablue}{RGB}{41, 134, 230}
+% Page layout according to VTU specification
+% Right: 1.25in, Left: 1in, Top & Bottom: 0.75in in each page
+\setlength{\oddsidemargin}{0.25in} % Left side margin {1in by default + 0.25in}
+% Header specification
+\setlength{\headheight}{\onelineskip}
+\setlength{\headsep}{6pt}
+\setlength{\topmargin}{-0.25in}
+% Footer specification
+\setlength{\footskip}{\onelineskip}
+\setlength{\footnotesep}{\onelineskip}
+% A4 paper height = 11.69in
+% thus 11.69in - 9.67in - 1in (top + header) is approx 0.75in left for bottom
+\setlength{\textheight}{9.67in}
+\OnehalfSpacing % Line Spacing set to 1.5
+\include{Certificate}
+\pagestyle{plain}
+\end{document}
+5. Develop a LaTeX script to create a document that contains the following table with proper labels.
+\documentclass{article}
+\begin{document}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline Sl.No & USN & Student name &\multicolumn{3}{c|}{Marks} \\
+\cline{4-6}
+& & & Subject1& Subject2 &Subject3 \\ \hline
+1 & 4XX22XX001&Name1 &89 &60 &90 \\ \hline
+2 & 4XX22XX002&Name2 &78 &45 &98 \\ \hline
+3 & 4XX22XX003&Name3 &67 &55 &59 \\ \hline \end{tabular}
+\end{document}
+6. Develop a LaTeX script to include the side-by-side graphics/figures in the document
+by using the subgraph concept.
+\documentclass[10pt,a4paper]{article}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\begin{document}
+\section{Subfigure}
+\begin{figure}[h]
+\centering
+\begin{subfigure}[b]{0.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{graph1.jpg}
+\caption{Tree and graph.}
+% \label{x}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{graph2.png}
+\caption{The tree.}
+\label{y}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.3\textwidth}
+\centering
+\includegraphics[width=\textwidth]{graph3.jpg}
+\caption{Tree VS Graph.}
+\label{z}
+\end{subfigure}
+\caption{Three simple graphs arranged side-by-side}
+\label{fig}
+\end{figure}
+\end{document}
+7. Develop a LaTeX script to create a document that consists of the following two
+mathematical equations.
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath,nccmath}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\begin{document}
+\begin{center}
+\Large{\textbf{Equations in \LaTeX}}
+\end{center}
+\section*{Equation 1}
+\begin{fleqn}
+\[
+x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}
+\]
+\[
+= \frac{-2 \pm \sqrt{2^{2}-4*(1)*(-8)}}{2*1}
+\]
+\[
+= \frac{-2 \pm \sqrt{4+32}}{2}
+\]
+\end{fleqn}
+\section*{Equation 2}
+\begin{fleqn}
+\[
+\varphi^{\lambda}_{\sigma}A_{t} = \sum_{\pi \in C_{t}}
+sgn(\pi)\varphi^{\lambda}_{\sigma}\varphi^{\lambda}_{\pi}
+\]
+\[
+= \sum_{\tau \in C_{\sigma t}} sgn(\sigma^{-
+1}\tau\sigma)\varphi^{\lambda}_{\sigma}\varphi^{\lambda}_{\sigma^{-1}\tau\sigma}
+\]
+\[
+= A_{\sigma t} \varphi^{\lambda}_{\sigma}
+\]
+\end{fleqn}
+\end{document}
+8. Develop a LaTeX script to demonstrate the presentation of numbered theorems, definitions, corollaries, and lemmas in the document.
+\documentclass{article}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\begin{document}
+\section{Numbered theorems, definitions, corollaries and lemmas}
+Theorems can easily be defined:
+\begin{theorem}
+Let \(f\) be a function whose derivative exists in every point, then \(f\) is a
+continuous function.
+\end{theorem}
+\begin{theorem}[Pythagorean theorem]
+\label{pythagorean}
+This is a theorem about right triangles and can be summarised in the next
+equation
+\[ x^2 + y^2 = z^2 \]
+\end{theorem}
+And a consequence of theorem \ref{pythagorean} is the statement in the next
+corollary.
+\begin{corollary}
+There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
+You can reference theorems such as \ref{pythagorean} when a label is assigned.
+\begin{lemma}
+Given two line segments whose lengths are \(a\) and \(b\) respectively there is
+a real number \(r\) such that \(b=ra\).
+\end{lemma}
+\begin{definition}[Absolute value function]
+The absolute value function can be specified as a two-part definition as
+follows: \\
+$
+|x| =
+\left\{
+\begin{array}{ll}
+x & \mbox{if } x \geq 0 \\
+-x & \mbox{if } x < 0
+\end{array}
+\right.
+$
+\end{definition}
+\end{document}
