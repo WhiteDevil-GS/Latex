@@ -1,63 +1,24 @@
 Program 1:
->CREATE USER UName IDENTIFIED BY passwd;
-Output: User UName created.
->GRANT ALL PRIVILEGES to UName;
-Output: Grant succeeded.
-Logout from System Admin.
-Again, Login with new Username and Password, what you have created.
-UN: UName
-PW: passwd
-Step 2: Creating the Employee table
->CREATE TABLE Employee1
-( EMPNO INT,
-ENAME VARCHAR(20),
-JOB VARCHAR(20),
-MANAGER_NO INT,
-SAL DECIMAL(10,2),
-COMMISSION DECIMAL(10,2)
+CREATE USER UName IDENTIFIED BY passwd;
+GRANT ALL PRIVILEGES TO UName;
+CREATE TABLE Employee1 (
+    EMPNO INT,
+    ENAME VARCHAR(20),
+    JOB VARCHAR(20),
+    MANAGER_NO INT,
+    SAL DECIMAL(10, 2),
+    COMMISSION DECIMAL(10, 2)
 );
-Output: Table EMPLOYEE1 created.
->desc Employee1;
-Output:(Check for all columns and their data types)
-Step 3: Inserting three records and rolling back
 BEGIN
-INSERT INTO Employee1 VALUES(1, 'John Doe', 'Manager', NULL, 50000.00, 1000.00);
-INSERT INTO Employee1 VALUES(2, 'Jane Smith', 'Developer', 1, 40000.00, 500.00);
-INSERT INTO Employee1 VALUES(3, 'Alice Johnson', 'Analyst', 1, 35000.00, NULL);
+    INSERT INTO Employee1 VALUES (1, 'John Doe', 'Manager', NULL, 50000.00, 1000.00);
+    INSERT INTO Employee1 VALUES (2, 'Jane Smith', 'Developer', 1, 40000.00, 500.00);
+    INSERT INTO Employee1 VALUES (3, 'Alice Johnson', 'Analyst', 1, 35000.00, NULL);
 END;
-Output:
-3 rows inserted.
->commit;
-Output: Commit complete.
->select * from Employee1;
->delete from Employee1 where ename = 'John Doe';
-Output: 1 row deleted.
->select * from employee1;
-Output:
-rollback;
-Output: Rollback complete.
-select * from employee1;
-Output:
-Step 4: Adding primary key and not null constraints
-Syntax for adding PK constraint:
-ALTER TABLE Table_Name ADD CONSTRAINT Constraint_Name PRIMARY KEY
-(Column_Name);
-> ALTER TABLE Employee1 ADD CONSTRAINT PK PRIMARY KEY (EMPNO);
-Output:
-Table EMPLOYEE1 altered.
-Syntax for adding NotNull constraint:
-ALTER TABLE T_NAME MODIFY C_NAME NOT NULL;
->ALTER TABLE employee1 MODIFY ename varchar(20) NOT NULL;
-Output:
-Table EMPLOYEE1 altered.
-Step 5: Inserting null values and verifying the result
-INSERT INTO Employee1 VALUES (1, 'Test Employee', 'Tester', 1, 35000.00,
-1000.00);
-ERROR
-Violation of PK constraint.
-INSERT INTO Employee1 VALUES (4, NULL , 'Tester', 1, 35000.00, 1000.00);
-ERROR
-Cannot insert NULL to Ename
+COMMIT;
+DELETE FROM Employee1 WHERE EMPNO = 3;
+ROLLBACK;
+SELECT * FROM Employee1;
+
 
 
 Program 2:
