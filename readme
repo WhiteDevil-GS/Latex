@@ -1,87 +1,4 @@
-DBMS LAB MANUAL(BCS403)
-INTRODUCTION TO SQL
-Pronounced as SEQUEL: Structured English QUERY Language
-Pure non-procedural query language
-Designed and developed by IBM, Implemented by Oracle
-1978 System/R IBM- 1st Relational DBMS
-1979 Oracle and Ingres
-1982 SQL/DS and DB2 IBM
-Accepted by both ANSI + ISO as Standard Query Language for any RDBMS
-SQL86 (SQL1) : first by ANSI and ratified by ISO (SQL-87), minor revision on 89 (SQL-89)
-SQL92 (SQL2) : major revision
-SQL99 (SQL3) : add recursive query, trigger, some OO features, and non-scholar type
-SQL2003 : XML, Window functions, and sequences (Not free)Supports all the three
-sublanguages of DBMS: DDL, DML, DCL
-Supports Aggregate functions, String Manipulation functions, Set theory operations, Date
-Manipulation functions, rich set of operators ( IN, BETWEEN, LIKE, IS NULL,EXISTS)
-Supports REPORT writing features and Forms for designing GUI based applications
-DATA DEFINITION, CONSTRAINTS, AND SCHEMA CHANGES
-Used to CREATE, ALTER, and DROP the descriptions of the database tables (relations)
-Data Definition in SQL
-CREATE, ALTER and DROP
-table…………………………………….……relation
-row……………………………………..…….tuple
-column………………………………….……attribute
-DATA TYPES
-Numeric: NUMBER, NUMBER(s,p), INTEGER, INT, FLOAT, DECIMAL
-Character: CHAR(n), VARCHAR(n), VARCHAR2(n), CHAR VARYING(n)
-Bit String: BLOB, CLOB
-Boolean: true, false, and null
-Date and Time: DATE (YYYY-MM-DD) TIME( HH:MM:SS)
-Timestamp: DATE + TIME
-USER Defined types
-CREATE SCHEMA
-Specifies a new database schema by giving it a name
-Ex: CREATE SCHEMA COMPANY AUTHORIZATION Jsmith;
-CREATE TABLE
-Specifies a new base relation by giving it a name, and specifying each of its attributes
-and their data types
-Syntax of CREATE Command:
-CREATE TABLE <table name> ( <Attribute A1> <Data Type D1> [< Constarints>],
-<Attribute A2> <Data Type D2> [< Constarints>],
-…….
-<Attribute An> <Data Type Dn> [< Constarints>],
-[<integrity-constraint1>, <integrity-constraint k> ] );
-- A constraint NOT NULL may be specified on
-an attribute A constraint NOT NULL may be specified
-on an attribute
-Ex: CREATE TABLE DEPARTMENT (
-DNAME VARCHAR(10) NOT NULL,
-DNUMBER INTEGER NOT NULL,
-MGRSSN CHAR(9), MGRSTARTDATE CHAR(9) );
-DROP TABLE
-Used to remove a relation (base table) and its definition.
-The relation can no longer be used in queries, updates, or any other commands since its
-description no longer exists
-Example: DROP TABLE DEPENDENT;
-ALTER TABLE:
-Used to add an attribute to/from one of the base relations drop constraint -- The new attribute
-will have NULLs in all the tuples of the relation right after the command is executed; hence,
-the NOT NULL constraint is not allowed for such an attribute.
-Example: ALTER TABLE EMPLOYEE ADD JOB VARCHAR2 (12);
-The database users must still enter a value for the new attribute JOB for each EMPLOYEE
-tuple. This can be done using the UPDATE command.
-DROP A COLUMN (AN ATTRIBUTE)
-ALTER TABLE COMPANY.EMPLOYEE DROP ADDRESS CASCADE; All constraints
-and views that reference the column are dropped automatically, along with the column.
-ALTER TABLE COMPANY.EMPLOYEE DROP ADDRESS RESTRICT; Successful if no
-views or constraints reference the column. ALTER TABLE COMPANY.DEPARTMENT
-ALTER MGRSSN DROP DEFAULT;
-EX: ALTER TABLE COMPANY.DEPARTMENT ALTER MGRSSN SET DEFAULT
-“333445555”;
-LAB EXPERIMENTS
 Program 1:
-Create a table called Employee & execute the following.
-Employee (EMPNO, ENAME, JOB, MANAGER_NO, SAL, COMMISSION)
-1.Create a user and grant all permissions to the user.
-2.Insert any three records in the employee table containing attributes EMPNO, ENAME JOB,
-MANAGER_NO, SAL, COMMISSION and use rollback. Check the result.
-3.Add primary key constraint and not null constraint to the employee table.
-4.Insert null values to the employee table and verify the result.
-Solution:
-Step 1: Creating a user and granting permissions
-Login as UN:System
-PW: System
 >CREATE USER UName IDENTIFIED BY passwd;
 Output: User UName created.
 >GRANT ALL PRIVILEGES to UName;
@@ -141,6 +58,8 @@ Violation of PK constraint.
 INSERT INTO Employee1 VALUES (4, NULL , 'Tester', 1, 35000.00, 1000.00);
 ERROR
 Cannot insert NULL to Ename
+
+
 Program 2:
 Create a table called Employee that contains attributes EMPNO,ENAME,JOB,
 MGR,SAL & execute the following.
@@ -242,6 +161,53 @@ Step 6. Find grouped salaries of employees:
 FROM Employee3
 GROUP BY Salary;
 Output:
+
+
+Program-3
+3. Queries using aggregate functions(COUNT,AVG,MIN,MAX,SUM),Group by,
+Orderby. Employee(E_id, E_name, Age, Salary)
+1. Create Employee table containing all Records E_id, E_name, Age, Salary.
+2. Count number of employee names from employee table
+3. Find the Maximum age from employee table.
+4. Find the Minimum age from employee table.
+5. Find salaries of employee in Ascending Order.
+6. Find grouped salaries of employees.
+Solution:
+Step 1: Creating the Employee3 table
+>CREATE TABLE Employee3 (
+E_id INT PRIMARY KEY,
+E_name VARCHAR(50),
+Age INT,
+Salary DECIMAL(10, 2));
+Output:
+Table Employee created
+Insertion of Values into the Table:
+Insert into Employee3 values (1, 'Ramesh', 35, 25000.00);
+Insert into Employee3 values (2,'Suresh', 39, 32000.00);
+Insert into Employee3 values (3,'Ganesh', 50, 55000.00);
+Insert into Employee3 values (4,'Sunaina',45, 24000.00);
+Insert into Employee3 values (5,'Rashmi', 41, 66000.00);
+Step 2. Count number of employee names
+>SELECT COUNT(E_name) AS TotalEmployees FROM Employee3;
+Output:
+Step 3. Find the Maximum age:
+>SELECT MAX(Age) AS MaxAge FROM Employee3;
+Output:
+Step 4. Find the Minimum age
+>SELECT MIN(Age) AS MinAge FROM Employee3;
+Output:
+Step 5. Find salaries of employees in Ascending Order:
+>SELECT Salary FROM Employee3 ORDER BY Salary ASC;
+Output:
+Step 6. Find grouped salaries of employees:
+>SELECT Salary, COUNT(*) AS EmployeeCount
+FROM Employee3
+GROUP BY Salary;
+Output:
+
+
+
+Program-4
 4. Create a row level trigger for the customers table that would fire for INSERT
 or UPDATE or DELETE operations performed on the CUSTOMERS table. This
 trigger will display the salary difference between the old & new Salary.
@@ -311,6 +277,10 @@ output:
 Salary before deletion: 58000
 1 row(s) deleted.
 select * from customers;
+
+
+
+Program-5
 5. Create a cursor for the Employee table & extract the values from the table.
 Declare the variables,Open the cursor & extract the values from the cursor.
 Close the cursor. Employee(E_id,E_name, Age, Salary)
@@ -368,16 +338,10 @@ Employee ID: 3, Name: Seema Banu, Age: 35, Salary: 62000
 Employee ID: 4, Name: Dennis Anil, Age: 28, Salary: 52000
 Employee ID: 5, Name: Rehman Khan, Age: 32, Salary: 58000
 Statement processed.
-Program 6
-Write a PL/SQL block of code using parameterized Cursor, that will merge the
-data available in the newly created table N_RollCall with the data available in
-the table O_RollCall. If the data in the first table already exist in the second
-table then that data should be skipped.
-Solution:
-To accomplish this task in MySQL, we can use a stored procedure with a
-parameterized cursor to merge data from one table (N_RollCall) into another table
-(O_RollCall) while skipping existing data. We’ll iterate through the records of
-N_RollCall and insert them into O_RollCall only if they do not already exist.
+
+
+
+Program-6
 Step 1: First, let’s create the N_RollCall and O_RollCall tables with similar structure:
 CREATE TABLE N_RollCall (
 student_id INT PRIMARY KEY,
@@ -462,75 +426,9 @@ OUTPUT:
 Statement Processed.
 Step 5: Verify Records in O_RollCall
 select * from O_rollcall;
-Program 7
-Install an Open Source NoSQL Data base MongoDB & perform basic
-CRUD(Create, Read, Update & Delete) operations. Execute MongoDB basic
-Queries using CRUD operations.
-Solution
-Setting Up MongoDB on Ubuntu
-Learn how to install and configure MongoDB on Ubuntu step-by-step to power your
-application’s database. This comprehensive guide covers everything from installation
-and service setup to basic configuration and optional security measures. By following
-these instructions, you’ll have MongoDB up and running smoothly on your Ubuntu
-machine, ready to support your application’s data needs efficiently and securely.
-Setting up MongoDB on Ubuntu involves several steps including installation,
-configuration, and basic setup. Below are step-by-step instructions for setting up
-MongoDB on Ubuntu. This installation was carried out on Ubuntu 22.04.4 LTS(should
-work for the newer versions as well).
-Install MongoDB Community Edition
-1. Import the public key used by the package management system
-From a terminal, install gnupg and curl if they are not already available:
-sudo apt-get install gnupg curl
-To import the MongoDB public GPG key, run the following command:
-curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
-sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
---dearmor
-2. Create a list file for MongoDB
-Create the /etc/apt/sources.list.d/mongodb-org-7.0.list file for Ubuntu 22.04
-(Jammy):
-echo "deb [ arch=amd64,arm64
-signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ]
-https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo
-tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-3. Reload local package database
-sudo apt-get update
-4. Install the MongoDB packages
-sudo apt-get install -y mongodb-org
-5. Install the MongoDB Compass (GUI Optional)
-Easily explore and manipulate your database with Compass, the GUI for MongoDB.
-Intuitive and flexible, Compass provides detailed schema visualizations, real-time
-performance metrics, sophisticated querying abilities, and much more.
-sudo apt-get install -y mongodb-org
-Run MongoDB Community Edition
-1. Start MongoDB.
-sudo systemctl start mongod
-2. Verify that MongoDB has started successfully.
-sudo systemctl status mongod
-This should display similar output as shown below
-$ sudo systemctl status mongod
-[sudo] password for putta:
-● mongod.service - MongoDB Database Server
-Loaded: loaded (/lib/systemd/system/mongod.service; enabled; vendor pres>
-Active: active (running) since Wed 2024-05-08 12:54:07 IST; 1h 56min ago
-Docs: https://docs.mongodb.org/manual
-Main PID: 275211 (mongod)
-Memory: 78.6M
-CPU: 31.213s
-CGroup: /system.slice/mongod.service
-└─275211 /usr/bin/mongod --config /etc/mongod.conf
-May 08 12:54:07 putta-PowerEdge-T30 systemd[1]: Started MongoDB Database
-Serv>
-May 08 12:54:07 putta-PowerEdge-T30 mongod[275211]: {"t":{"$date":"2024-05-08>
-lines 1-12/12 (END)
-3. Stop MongoDB. (Optional)
-sudo systemctl stop mongod
-4. Restart MongoDB. (Optional)
-sudo systemctl restart mongod
-5. Begin using MongoDB.
-Mongosh
-Now you will see a MongoDB shell, where you can issue the queries. If you have
-reached here, it means that you have successfully installed MongoDB on your
-system.
+
+
+Program-7
 Lab program
 1. Installing Open Source NoSQL Data base MongoDB
 Please refer to the blog below which contains detailed procedure of installing Open
@@ -831,6 +729,3 @@ true
 bookDB> show collections
 bookDB>
 The command db.ProgrammingBooks.drop( ) will permanently delete the
-ProgrammingBooks collection from the current database (bookDB).
-After deleting the collection, you can verify that it no longer exists by listing all
-collections in the database using the command show collections.
