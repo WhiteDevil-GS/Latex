@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Root}
+\begin{itemize}
+    \item Child 1
+    \begin{itemize}
+        \item Subchild 1
+        \item Subchild 2
+    \end{itemize}
+    \item Child 2
+    \begin{itemize}
+        \item Subchild 1
+        \item Subchild 2
+    \end{itemize}
+\end{itemize}
+
+\end{document}
