@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{background}
+\geometry{a4paper,total={170mm,257mm},left=20mm,top=30mm,}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\thispagestyle{empty}
+\backgroundsetup{
+      scale=.8,
+      angle=0,
+      firstpage=true,
+      opacity=0.1,
+      color=black,      
+}    
+\begin{document}
+
+\begin{tikzpicture}[remember picture,overlay]
+     \draw[line width = 2 pt]
+     ($(current page.north west)+ ((0.5in,-0.5in)$)rectangle($(current page.south east)+((-0.5in,0.5in)$);
+\end{tikzpicture}
+
+\begin{title}\\
+
+\begin{center}
+\textbf{{\large VISVESVARAYA TECHNOLOGICAL UNIVERSITY}}\\
+{\normalsize Jnana Sangama,Belagavi-590018}\\
+\vspace{0.3in}
+\includegraphics[scale=0.3]{vtulogo.png}\\ 
+\vspace{0.01in}
+
+A PROJECT REPORT \\ ON \\
+\vspace{0.1in}
+\textbf{{\large "XXXXXXXX XXXXXX XXXXX XXXXXX XXXXXXXX"}}\\
+\vspace{0.1in}
+{\small Submitted in the partial fulfilment of the requirements for the award of the degree of }\\
+\vspace{0.1in}
+\textbf{BACHELOR OF ENGINEERING \\ IN \\ COMPUTER SCIENCE AND ENGINEERING}\\
+\vspace{0.2in}
+Submitted by\\
+
+\begin{tabular}{c c c}
+\textbf{XXXXXXXX XX} & \hspace{2.5in} &\textbf{4BDXXCSXXX}\\
+\textbf{XXXXXXXX XX} & \hspace{2.5in}  &\textbf{4BDXXCSXXX}\\
+\textbf{XX XXXXXXXX} & \hspace{2.5in}  &\textbf{4BDXXCSXXX}\\
+\textbf{XXX XXXXX XX} & \hspace{2.5in} &\textbf{4BDXXCSXXX}\\
+\vspace{0.05in}
+\end{tabular}
+
+\textbf{Under the Guidance of }\\
+XX XXXXXXXXX XX\\
+Assistant Professor, Dept of CSE, BIET\\
+\includegraphics[scale=0.3]{bietlogo}\\
+{ \scriptsize DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING}\\
+\textbf{BAPUJI INSTITUTE OF ENGINEERING AND TECHNOLOGY}\\
+{\scriptsize SHAMANUR ROAD, DAVANGERE-577004}\\
+{\scriptsize 2023-24}
+\end{center}
+
+\end{title}
+
+\end{document}
